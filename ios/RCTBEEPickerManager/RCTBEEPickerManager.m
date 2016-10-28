@@ -31,6 +31,21 @@
 
 RCT_EXPORT_MODULE();
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRNReload) name:RCTReloadNotification object:nil];
+    }
+    return self;
+}
+
+-(void)onRNReload
+{
+    [self hide];
+}
+
 RCT_EXPORT_METHOD(_init:(NSDictionary *)indic){
     if (_pickerView) {
         [self _releasePicker];
