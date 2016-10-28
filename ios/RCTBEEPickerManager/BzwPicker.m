@@ -584,14 +584,9 @@
         self.bolock(dic);
     }
    
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:.2f animations:^{
-            
-            [self setFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 250)];
-            
-        }];
-    });
+    if (self.dismissBlock) {
+        self.dismissBlock();
+    }
 }
 //按了确定按钮
 -(void)cfirmAction
@@ -613,12 +608,9 @@
         self.bolock(dic);
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:.2f animations:^{
-            
-            [self setFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 250)];
-        }];
-    });
+    if (self.dismissBlock) {
+        self.dismissBlock();
+    }
 }
 -(void)selectRow
 {

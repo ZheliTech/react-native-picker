@@ -19,6 +19,7 @@ typedef void(^backBolock)(NSDictionary * );
 @property (strong,nonatomic)UIPickerView *pick;
 
 @property(nonatomic,copy)backBolock bolock;
+@property (nonatomic, copy) void (^dismissBlock)(void);
 
 @property (strong, nonatomic) NSDictionary *pickerDic;//一开始进来的字典
 
