@@ -104,7 +104,7 @@ RCT_EXPORT_METHOD(_init:(NSDictionary *)indic){
 }
 
 - (void)_onTapBlank {
-    [self hide];
+    [_pick cancleAction];
 }
 
 - (void)_releasePicker {
