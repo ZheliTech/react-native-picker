@@ -7,10 +7,11 @@
 //
 
 #import "BzwPicker.h"
+#import "UIColor+BEEAdditions.h"
 
 @implementation BzwPicker
 
--(instancetype)initWithFrame:(CGRect)frame dic:(NSDictionary *)dic leftStr:(NSString *)leftStr centerStr:(NSString *)centerStr rightStr:(NSString *)rightStr topbgColor:(NSArray *)topbgColor bottombgColor:(NSArray *)bottombgColor leftbtnbgColor:(NSArray *)leftbtnbgColor rightbtnbgColor:(NSArray *)rightbtnbgColor centerbtnColor:(NSArray *)centerbtnColor selectValueArry:(NSArray *)selectValueArry  weightArry:(NSArray *)weightArry
+-(instancetype)initWithFrame:(CGRect)frame dic:(NSDictionary *)dic leftStr:(NSString *)leftStr centerStr:(NSString *)centerStr rightStr:(NSString *)rightStr topbgColor:(NSArray *)topbgColor bottombgColor:(NSArray *)bottombgColor leftbtnbgColor:(NSArray *)leftbtnbgColor rightbtnbgColor:(NSArray *)rightbtnbgColor centerbtnColor:(NSArray *)centerbtnColor selectValueArry:(NSArray *)selectValueArry  weightArry:(NSArray *)weightArry separatorColor:(NSArray *)separatorColor
 {
     self = [super initWithFrame:frame];
     if (self)
@@ -27,67 +28,56 @@
         [self getStyle];
         [self getnumStyle];
         dispatch_async(dispatch_get_main_queue(), ^{
-           [self makeuiWith:topbgColor With:bottombgColor With:leftbtnbgColor With:rightbtnbgColor With:centerbtnColor];
+           [self makeuiWith:topbgColor With:bottombgColor With:leftbtnbgColor With:rightbtnbgColor With:centerbtnColor separatorColor:separatorColor];
             [self selectRow];
         });
     }
     return self;
 }
--(void)makeuiWith:(NSArray *)topbgColor With:(NSArray *)bottombgColor With:(NSArray *)leftbtnbgColor With:(NSArray *)rightbtnbgColor With:(NSArray *)centerbtnColor
+-(void)makeuiWith:(NSArray *)topbgColor With:(NSArray *)bottombgColor With:(NSArray *)leftbtnbgColor With:(NSArray *)rightbtnbgColor With:(NSArray *)centerbtnColor separatorColor:(NSArray *)separatorColor
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width, 40)];
-    view.backgroundColor = [UIColor cyanColor];
-    
+    view.backgroundColor=[UIColor bee_colorWith:topbgColor];
     [self addSubview:view];
     
-    
     self.leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.leftBtn.frame = CGRectMake(10, 5, 90, 30);
+    self.leftBtn.frame = CGRectMake(10, 0, 90, 40);
     [self.leftBtn setTitle:self.leftStr forState:UIControlStateNormal];
     [self.leftBtn setFont:[UIFont systemFontOfSize:16]];
     self.leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.leftBtn addTarget:self action:@selector(cancleAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.leftBtn setTitleColor:[self colorWith:leftbtnbgColor] forState:UIControlStateNormal];
+    [self.leftBtn setTitleColor:[UIColor bee_colorWith:leftbtnbgColor] forState:UIControlStateNormal];
     
     [view addSubview:self.leftBtn];
-    
-    view.backgroundColor=[self colorWith:topbgColor];
-    
 
     self.rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-     self.rightBtn.frame = CGRectMake(view.frame.size.width-100,5, 90, 30);
+     self.rightBtn.frame = CGRectMake(view.frame.size.width-100, 0, 90, 40);
     [self.rightBtn setTitle:self.rightStr forState:UIControlStateNormal];
     self.rightBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;
-    
-    [self.rightBtn setTitleColor:[self colorWith:rightbtnbgColor] forState:UIControlStateNormal];
-    
-    
-    [view addSubview:self.rightBtn];
+    [self.rightBtn setTitleColor:[UIColor bee_colorWith:rightbtnbgColor] forState:UIControlStateNormal];
     [self.rightBtn setFont:[UIFont systemFontOfSize:16]];
     [self.rightBtn addTarget:self action:@selector(cfirmAction) forControlEvents:UIControlEventTouchUpInside];
     
+    [view addSubview:self.rightBtn];
     
     UILabel *cenLabel=[[UILabel alloc]initWithFrame:CGRectMake(90, 5, SCREEN_WIDTH-180, 30)];
-    
     cenLabel.textAlignment=NSTextAlignmentCenter;
-    
     [cenLabel setFont:[UIFont systemFontOfSize:16]];
-    
     cenLabel.text=self.centStr;
-
-    [cenLabel setTextColor:[self colorWith:centerbtnColor]];
-        
+    [cenLabel setTextColor:[UIColor bee_colorWith:centerbtnColor]];
     [view addSubview:cenLabel];
-
-    self.pick = [[UIPickerView alloc] initWithFrame:CGRectMake(-15, 40, self.frame.size.width+15, self.frame.size.height - 40)];
     
+    self.pick = [[UIPickerView alloc] initWithFrame:CGRectMake(-15, 40, self.frame.size.width+15, self.frame.size.height - 50)];
     self.pick.delegate = self;
     self.pick.dataSource = self;
     self.pick.showsSelectionIndicator=YES;
     [self addSubview:self.pick];
     
-    self.pick.backgroundColor=[self colorWith:bottombgColor];
+    UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(0, 40, self.frame.size.width, 1)];
+    separatorLine.backgroundColor = [UIColor bee_colorWith:separatorColor];
+    [self addSubview:separatorLine];
+    
+    self.pick.backgroundColor=[UIColor bee_colorWith:bottombgColor];
 }
 //返回显示的列数
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -877,17 +867,6 @@
             }
         }
     }
-}
-
--(UIColor *)colorWith:(NSArray *)colorArry
-{
-    NSString *ColorA=[NSString stringWithFormat:@"%@",colorArry[0]];
-    NSString *ColorB=[NSString stringWithFormat:@"%@",colorArry[1]];
-    NSString *ColorC=[NSString stringWithFormat:@"%@",colorArry[2]];
-    NSString *ColorD=[NSString stringWithFormat:@"%@",colorArry[3]];
-    
-    UIColor *color=[[UIColor alloc]initWithRed:[ColorA integerValue]/255.0 green:[ColorB integerValue]/255.0 blue:[ColorC integerValue]/255.0 alpha:[ColorD floatValue]];
-    return color;
 }
 
 @end

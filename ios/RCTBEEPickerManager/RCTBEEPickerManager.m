@@ -9,6 +9,7 @@
 #import "RCTBEEPickerManager.h"
 #import "BzwPicker.h"
 #import "RCTEventDispatcher.h"
+#import "UIColor+BEEAdditions.h"
 
 @interface BzwPickerView : UIView
 
@@ -50,6 +51,7 @@ RCT_EXPORT_METHOD(_init:(NSDictionary *)indic){
     if (_pickerView) {
         [self _releasePicker];
     }
+    NSLog(@"%@", indic);
     
     NSString *pickerConfirmBtnText=indic[@"pickerConfirmBtnText"];
     NSString *pickerCancelBtnText=indic[@"pickerCancelBtnText"];
@@ -59,6 +61,8 @@ RCT_EXPORT_METHOD(_init:(NSDictionary *)indic){
     NSArray *pickerTitleColor=indic[@"pickerTitleColor"];
     NSArray *pickerToolBarBg=indic[@"pickerToolBarBg"];
     NSArray *pickerBg=indic[@"pickerBg"];
+    NSArray *maskBg=indic[@"maskBg"];
+    NSArray *separatorColor=indic[@"separatorColor"];
     NSArray *selectArry=indic[@"selectedValue"];
     NSArray *weightArry=indic[@"wheelFlex"];
     
@@ -69,10 +73,11 @@ RCT_EXPORT_METHOD(_init:(NSDictionary *)indic){
     dataDic[@"pickerData"]=pickerData;
     
     _pickerView = [[BzwPickerView alloc] initWithFrame:[self _getWindow].bounds];
+    _pickerView.backgroundColor = [UIColor bee_colorWith:maskBg];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onTapBlank)];
     [_pickerView addGestureRecognizer:tapRecognizer];
     
-    _pick=[[BzwPicker alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 250) dic:dataDic leftStr:pickerCancelBtnText centerStr:pickerTitleText rightStr:pickerConfirmBtnText topbgColor:pickerToolBarBg bottombgColor:pickerBg leftbtnbgColor:pickerCancelBtnColor rightbtnbgColor:pickerConfirmBtnColor centerbtnColor:pickerTitleColor selectValueArry:selectArry weightArry:weightArry];
+    _pick=[[BzwPicker alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 250) dic:dataDic leftStr:pickerCancelBtnText centerStr:pickerTitleText rightStr:pickerConfirmBtnText topbgColor:pickerToolBarBg bottombgColor:pickerBg leftbtnbgColor:pickerCancelBtnColor rightbtnbgColor:pickerConfirmBtnColor centerbtnColor:pickerTitleColor selectValueArry:selectArry weightArry:weightArry separatorColor:separatorColor];
     __weak typeof(self) weakSelf = self;
     _pick.dismissBlock = ^{
         [weakSelf hide];

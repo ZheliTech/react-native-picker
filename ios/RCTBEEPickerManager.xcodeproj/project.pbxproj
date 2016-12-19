@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17D41E591D7EE0CA0031415E /* RCTBEEPickerManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 17D41E581D7EE0CA0031415E /* RCTBEEPickerManager.h */; };
-		17D41E5B1D7EE0CA0031415E /* RCTBEEPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D41E5A1D7EE0CA0031415E /* RCTBEEPickerManager.m */; };
-		17D41E631D7EE0EE0031415E /* BzwPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D41E621D7EE0EE0031415E /* BzwPicker.m */; };
+		6CF2FE071E07E60000566A3B /* BzwPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2FE021E07E60000566A3B /* BzwPicker.m */; };
+		6CF2FE081E07E60000566A3B /* RCTBEEPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2FE041E07E60000566A3B /* RCTBEEPickerManager.m */; };
+		6CF2FE091E07E60000566A3B /* UIColor+BEEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF2FE061E07E60000566A3B /* UIColor+BEEAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -19,7 +19,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				17D41E591D7EE0CA0031415E /* RCTBEEPickerManager.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27,10 +26,12 @@
 
 /* Begin PBXFileReference section */
 		17D41E551D7EE0CA0031415E /* libRCTBEEPickerManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTBEEPickerManager.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		17D41E581D7EE0CA0031415E /* RCTBEEPickerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTBEEPickerManager.h; sourceTree = "<group>"; };
-		17D41E5A1D7EE0CA0031415E /* RCTBEEPickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTBEEPickerManager.m; sourceTree = "<group>"; };
-		17D41E611D7EE0EE0031415E /* BzwPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BzwPicker.h; sourceTree = "<group>"; };
-		17D41E621D7EE0EE0031415E /* BzwPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BzwPicker.m; sourceTree = "<group>"; };
+		6CF2FE011E07E60000566A3B /* BzwPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BzwPicker.h; sourceTree = "<group>"; };
+		6CF2FE021E07E60000566A3B /* BzwPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BzwPicker.m; sourceTree = "<group>"; };
+		6CF2FE031E07E60000566A3B /* RCTBEEPickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTBEEPickerManager.h; sourceTree = "<group>"; };
+		6CF2FE041E07E60000566A3B /* RCTBEEPickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTBEEPickerManager.m; sourceTree = "<group>"; };
+		6CF2FE051E07E60000566A3B /* UIColor+BEEAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BEEAdditions.h"; sourceTree = "<group>"; };
+		6CF2FE061E07E60000566A3B /* UIColor+BEEAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BEEAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +64,12 @@
 		17D41E571D7EE0CA0031415E /* RCTBEEPickerManager */ = {
 			isa = PBXGroup;
 			children = (
-				17D41E611D7EE0EE0031415E /* BzwPicker.h */,
-				17D41E621D7EE0EE0031415E /* BzwPicker.m */,
-				17D41E581D7EE0CA0031415E /* RCTBEEPickerManager.h */,
-				17D41E5A1D7EE0CA0031415E /* RCTBEEPickerManager.m */,
+				6CF2FE011E07E60000566A3B /* BzwPicker.h */,
+				6CF2FE021E07E60000566A3B /* BzwPicker.m */,
+				6CF2FE031E07E60000566A3B /* RCTBEEPickerManager.h */,
+				6CF2FE041E07E60000566A3B /* RCTBEEPickerManager.m */,
+				6CF2FE051E07E60000566A3B /* UIColor+BEEAdditions.h */,
+				6CF2FE061E07E60000566A3B /* UIColor+BEEAdditions.m */,
 			);
 			path = RCTBEEPickerManager;
 			sourceTree = "<group>";
@@ -127,8 +130,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17D41E5B1D7EE0CA0031415E /* RCTBEEPickerManager.m in Sources */,
-				17D41E631D7EE0EE0031415E /* BzwPicker.m in Sources */,
+				6CF2FE081E07E60000566A3B /* RCTBEEPickerManager.m in Sources */,
+				6CF2FE091E07E60000566A3B /* UIColor+BEEAdditions.m in Sources */,
+				6CF2FE071E07E60000566A3B /* BzwPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +264,7 @@
 				17D41E601D7EE0CA0031415E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

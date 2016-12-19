@@ -76,17 +76,17 @@ export default class PickerTest extends Component {
 
     _showDatePicker() {
         Picker.init({
-            pickerData: createDateData(),
-            selectedValue: ['2015年', '12月', '12日'],
-            onPickerConfirm: pickedValue => {
-                console.log('date', pickedValue);
-            },
-            onPickerCancel: pickedValue => {
-                console.log('date', pickedValue);
-            },
-            onPickerSelect: pickedValue => {
-                console.log('date', pickedValue);
-            }
+          pickerData: createDateData(),
+          selectedValue: ['2015年', '12月', '12日'],
+          onPickerConfirm: pickedValue => {
+              console.log('date', pickedValue);
+          },
+          onPickerCancel: pickedValue => {
+              console.log('date', pickedValue);
+          },
+          onPickerSelect: pickedValue => {
+              console.log('date', pickedValue);
+          }
         });
         Picker.show();
     }
@@ -94,17 +94,17 @@ export default class PickerTest extends Component {
     _showAreaPicker() {
         createAreaData(data => {
             Picker.init({
-                pickerData: data,
-                selectedValue: ['河北', '唐山', '古冶区'],
-                onPickerConfirm: pickedValue => {
-                    console.log('area', pickedValue);
-                },
-                onPickerCancel: pickedValue => {
-                    console.log('area', pickedValue);
-                },
-                onPickerSelect: pickedValue => {
-                    console.log('area', pickedValue);
-                }
+              pickerData: data,
+              selectedValue: ['河北', '唐山', '古冶区'],
+              onPickerConfirm: pickedValue => {
+                  console.log('area', pickedValue);
+              },
+              onPickerCancel: pickedValue => {
+                  console.log('area', pickedValue);
+              },
+              onPickerSelect: pickedValue => {
+                  console.log('area', pickedValue);
+              }
             });
             Picker.show();
         });
