@@ -165,7 +165,7 @@ class PickerTest extends Component {
                 }
                 else if(targetValue[1] in {4:1, 6:1, 9:1, 11:1} && targetValue[2] > 30){
                     targetValue[2] = 30;
-                    
+
                 }
                 // forbidden some value such as some 2.29, 4.31, 6.31...
                 if(JSON.stringify(targetValue) !== JSON.stringify(pickedValue)){
@@ -182,6 +182,47 @@ class PickerTest extends Component {
             }
         });
         Picker.show();
+    }
+
+    _showHeightConditionPicker() {
+      const MIN_HEIGHT = 140
+      const MAX_HEIGHT = 200
+      const heights = []
+      for (let height = MIN_HEIGHT; height <= MAX_HEIGHT; height++) {
+        heights.push(height)
+      }
+      const pickerData = [
+        heights,
+        heights
+      ]
+      const selectedValue = [170, 180]
+      let selectedMinHeight = selectedValue[0]
+      let selectedMaxHeight = selectedValue[1]
+      Picker.init({
+        pickerData,
+        selectedValue,
+        onPickerConfirm: ([minHeight, maxHeight]) => {
+          console.log('minHeight: ', minHeight, ', maxHeight: ', maxHeight);
+        },
+        onPickerSelect: ([minHeight, maxHeight]) => {
+          if (minHeight != selectedMinHeight) {
+            if (minHeight > maxHeight) {
+              selectedMinHeight = selectedMaxHeight = minHeight
+              Picker.select([minHeight, minHeight])
+              return
+            }
+          } else if (maxHeight != selectedMaxHeight) {
+            if (maxHeight < minHeight) {
+              selectedMinHeight = selectedMaxHeight = maxHeight
+              Picker.select([maxHeight, maxHeight])
+              return
+            }
+          }
+          selectedMinHeight = minHeight
+          selectedMaxHeight = maxHeight
+        }
+      });
+      Picker.show();
     }
 
     _toggle() {
@@ -206,13 +247,16 @@ class PickerTest extends Component {
                 <TouchableOpacity style={{marginTop: 10, marginLeft: 20}} onPress={this._showAreaPicker.bind(this)}>
                     <Text>AreaPicker</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={{marginTop: 10, marginLeft: 20}} onPress={this._showHeightConditionPicker.bind(this)}>
+                    <Text>HeightConditionPicker</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={{marginTop: 10, marginLeft: 20}} onPress={this._toggle.bind(this)}>
                     <Text>toggle</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{marginTop: 10, marginLeft: 20}} onPress={this._isPickerShow.bind(this)}>
                     <Text>isPickerShow</Text>
                 </TouchableOpacity>
-                <TextInput 
+                <TextInput
                     placeholder="test picker with input"
                     style={{
                         height: 40,
