@@ -23,6 +23,8 @@
 
 @property (nonatomic, strong) UIView *pickerView;
 @property(nonatomic,strong)BzwPicker *pick;
+@property(nonatomic,assign)float height;
+@property(nonatomic,weak)UIWindow * window;
 
 @end
 
@@ -53,6 +55,12 @@ RCT_EXPORT_METHOD(_init:(NSDictionary *)indic){
     }
     NSLog(@"%@", indic);
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    });
+    
+    self.window = [UIApplication sharedApplication].keyWindow;
+    
     NSString *pickerConfirmBtnText=indic[@"pickerConfirmBtnText"];
     NSString *pickerCancelBtnText=indic[@"pickerCancelBtnText"];
     NSString *pickerTitleText=indic[@"pickerTitleText"];
@@ -65,6 +73,9 @@ RCT_EXPORT_METHOD(_init:(NSDictionary *)indic){
     NSArray *separatorColor=indic[@"separatorColor"];
     NSArray *selectArry=indic[@"selectedValue"];
     NSArray *weightArry=indic[@"wheelFlex"];
+    NSString *pickerToolBarFontSize=[NSString stringWithFormat:@"%@",indic[@"pickerToolBarFontSize"]];
+    NSString *pickerFontSize=[NSString stringWithFormat:@"%@",indic[@"pickerFontSize"]];
+    NSArray *pickerFontColor=indic[@"pickerFontColor"];
     
     id pickerData=indic[@"pickerData"];
     
@@ -77,7 +88,7 @@ RCT_EXPORT_METHOD(_init:(NSDictionary *)indic){
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onTapBlank)];
     [_pickerView addGestureRecognizer:tapRecognizer];
     
-    _pick=[[BzwPicker alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 250) dic:dataDic leftStr:pickerCancelBtnText centerStr:pickerTitleText rightStr:pickerConfirmBtnText topbgColor:pickerToolBarBg bottombgColor:pickerBg leftbtnbgColor:pickerCancelBtnColor rightbtnbgColor:pickerConfirmBtnColor centerbtnColor:pickerTitleColor selectValueArry:selectArry weightArry:weightArry separatorColor:separatorColor];
+    _pick=[[BzwPicker alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 250) dic:dataDic leftStr:pickerCancelBtnText centerStr:pickerTitleText rightStr:pickerConfirmBtnText topbgColor:pickerToolBarBg bottombgColor:pickerBg leftbtnbgColor:pickerCancelBtnColor rightbtnbgColor:pickerConfirmBtnColor centerbtnColor:pickerTitleColor selectValueArry:selectArry weightArry:weightArry separatorColor:separatorColor pickerToolBarFontSize:pickerToolBarFontSize pickerFontSize:pickerFontSize pickerFontColor:pickerFontColor];
     __weak typeof(self) weakSelf = self;
     _pick.dismissBlock = ^{
         [weakSelf hide];
@@ -126,7 +137,6 @@ RCT_EXPORT_METHOD(show){
             
             [UIView animateWithDuration:.3 animations:^{
                 [_pick setFrame:CGRectMake(0, _pickerView.frame.size.height-250, SCREEN_WIDTH, 250)];
-                
             }];
         });
     }return;
@@ -143,6 +153,17 @@ RCT_EXPORT_METHOD(hide){
         });
     }return;
 }
+
+RCT_EXPORT_METHOD(select: (NSArray*)data){
+
+    if (self.pick) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _pick.selectValueArry = data;
+            [_pick selectRow];
+        });
+    }return;
+}
+
 RCT_EXPORT_METHOD(isPickerShow:(RCTResponseSenderBlock)getBack){
     if (self.pick) {
         CGFloat pickY=_pick.frame.origin.y;

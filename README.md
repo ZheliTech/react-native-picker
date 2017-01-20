@@ -2,40 +2,42 @@
 
 [![npm version](https://img.shields.io/npm/v/react-native-picker.svg?style=flat-square)](https://www.npmjs.com/package/react-native-picker) <a href="https://david-dm.org/beefe/react-native-picker"><img src="https://david-dm.org/beefe/react-native-picker.svg?style=flat-square" alt="dependency status"></a>   
 
-### For pure javascript version -> [v3.0.5](https://github.com/beefe/react-native-picker/tree/pure-javascript-version)
-
-![ui2](./doc/ui2.jpg)
+![ui3](./doc/ui3.jpg)
+![ui4](./doc/ui4.jpg)
 
 ###Documentation
 
 ####Params
 
-|Key | Type | Default| Description |
-| --- | ---- | ------ | ----------- |
-|pickerConfirmBtnText   |string  |确认                |               |
-|pickerCancelBtnText    |string  |取消                |               |
-|pickerTitleText        |string  |请选择              |               |
-|pickerConfirmBtnColor  |array   |[1, 186, 245, 1]   |               |
-|pickerCancelBtnColor   |array   |[1, 186, 245, 1]   |               |
-|pickerTitleColor       |array   |[20, 20, 20, 1])   |               |
-|pickerToolBarBg        |array   |[232, 232, 232, 1] |               |
-|pickerBg               |array   |[196, 199, 206, 1] |               |
-|wheelFlex              |array   |[2, 1, 1]          |set width of the three wheels to 2:1:1     |
-|pickerData             |array   |                   |               |
-|selectedValue          |array   |                   |               |
-|onPickerConfirm        |function|                   |               |
-|onPickerCancel         |function|                   |               |
-|onPickerSelect         |function|                   |               |
+|Key | Description | Type | Default|
+| --- | ----------- | ---- | ------ |
+|pickerConfirmBtnText  |            |string  |confirm            |
+|pickerCancelBtnText   |            |string  |cancel             |
+|pickerTitleText       |            |string  |pls select         |
+|pickerConfirmBtnColor |            |array   |[1, 186, 245, 1]   |
+|pickerCancelBtnColor  |            |array   |[1, 186, 245, 1]   |
+|pickerTitleColor      |            |array   |[20, 20, 20, 1])   |
+|pickerToolBarBg       |            |array   |[232, 232, 232, 1] |
+|pickerBg              |            |array   |[196, 199, 206, 1] |
+|pickerToolBarFontSize |            |number  |16                 |
+|pickerFontSize        |            |number  |16                 |
+|pickerFontColor       |            |array   |[31, 31, 31, 1]    |
+|pickerData            |            |array   |                   |
+|selectedValue         |            |string  |                   |
+|onPickerConfirm       |            |function|                   |
+|onPickerCancel        |            |function|                   |
+|onPickerSelect        |            |function|                   |
 
 ####Methods
 
 |Name | Description | Type | Default|
 | --- | ----------- | ---- | ------ |
-|init         |init and pass parameters to picker      |   |   |
-|toggle       |show or hide picker                     |   |   |
-|show         |show picker                             |   |   |
-|hide         |hide picker                             |   |   |
-|isPickerShow |get status of picker, return a boolean  |   |   |
+|init         |init and pass parameters to picker      |     |   |
+|toggle       |show or hide picker                     |     |   |
+|show         |show picker                             |     |   |
+|hide         |hide picker                             |     |   |
+|select       |select a row                            |array|   |
+|isPickerShow |get status of picker, return a boolean  |     |   |
 
 
 ###Usage
@@ -93,7 +95,7 @@
 
 ```javascript
 	pickerData = [1,2,3,4];
-	selectedValue = [3];
+	selectedValue = 3;
 ```
 
 - two or more wheel:
@@ -170,3 +172,5 @@
         ...
     ]
 ```
+
+### For pure javascript version -> [v3.0.5](https://github.com/beefe/react-native-picker/tree/pure-javascript-version)

@@ -40,6 +40,9 @@ typedef void(^backBolock)(NSDictionary * );
 @property(strong,nonatomic)NSString *leftStr;
 @property(strong,nonatomic)NSString *centStr;
 @property(strong,nonatomic)NSString *rightStr;
+@property(strong,nonatomic)NSString *pickerToolBarFontSize;
+@property(strong,nonatomic)NSString *pickerFontSize;
+@property(strong,nonatomic)NSArray*pickerFontColor;
 
 
 
@@ -62,6 +65,7 @@ typedef void(^backBolock)(NSDictionary * );
 
 @property(strong,nonatomic)NSArray *weightArry;
 
+@property(assign,nonatomic)CGFloat lineWith;
 //创建一个下角标记录是第几行 来一进来判断第一行被选中 当进来的是关联两行的逻辑的时候 或者三行关联的时候取第二行做记录
 
 @property(assign,nonatomic)NSInteger num;
@@ -73,7 +77,9 @@ typedef void(^backBolock)(NSDictionary * );
 -(void)cfirmAction;
 -(void)cancleAction;
 
--(instancetype)initWithFrame:(CGRect)frame dic:(NSDictionary *)dic leftStr:(NSString *)leftStr centerStr:(NSString *)centerStr rightStr:(NSString *)rightStr topbgColor:(NSArray *)topbgColor bottombgColor:(NSArray *)bottombgColor leftbtnbgColor:(NSArray *)leftbtnbgColor rightbtnbgColor:(NSArray *)rightbtnbgColor centerbtnColor:(NSArray *)centerbtnColor selectValueArry:(NSArray *)selectValueArry  weightArry:(NSArray *)weightArry separatorColor:(NSArray *)separatorColor;
+-(instancetype)initWithFrame:(CGRect)frame dic:(NSDictionary *)dic leftStr:(NSString *)leftStr centerStr:(NSString *)centerStr rightStr:(NSString *)rightStr topbgColor:(NSArray *)topbgColor bottombgColor:(NSArray *)bottombgColor leftbtnbgColor:(NSArray *)leftbtnbgColor rightbtnbgColor:(NSArray *)rightbtnbgColor centerbtnColor:(NSArray *)centerbtnColor selectValueArry:(NSArray *)selectValueArry  weightArry:(NSArray *)weightArry separatorColor:(NSArray *)separatorColor pickerToolBarFontSize:(NSString *)pickerToolBarFontSize  pickerFontSize:(NSString *)pickerFontSize  pickerFontColor:(NSArray *)pickerFontColor;
+@property(assign,nonatomic)NSInteger seleNum;//用来做索引下标用
 
 
+-(void)selectRow;
 @end

@@ -23,9 +23,16 @@ export default {
             pickerConfirmBtnColor: [114, 112, 115, 1],
             pickerCancelBtnColor: [114, 112, 115, 1],
             separatorColor: [237, 237, 237, 1],
+            wheelFlex: [1, 1, 1],
+            pickerData: [],
+            selectedValue: [],
             onPickerConfirm(){},
             onPickerCancel(){},
             onPickerSelect(){},
+            //4.0.12 add
+            pickerToolBarFontSize: 16,
+            pickerFontSize: 16,
+            pickerFontColor: [31, 31 ,31, 1],
             ...options
         };
         let fnConf = {
@@ -38,14 +45,7 @@ export default {
         //there are no `removeListener` for NativeAppEventEmitter & DeviceEventEmitter
         this.listener && this.listener.remove();
         this.listener = NativeAppEventEmitter.addListener('pickerEvent', event => {
-            if(ios){
-                fnConf[event['type']](event['selectedValue']);
-            }
-            else if(android){
-                for (let i in event){
-                    typeof fnConf[i] === 'function' && fnConf[i](event[i]);
-                }
-            }
+            fnConf[event['type']](event['selectedValue'], event['selectedIndex']);
         });
     },
 
@@ -55,6 +55,17 @@ export default {
 
     hide(){
         Picker.hide();
+    },
+
+    select(arr, fn) {
+        if(ios){
+            Picker.select(arr);
+        }
+        else if(android){
+            Picker.select(arr, err => {
+                typeof fn === 'function' && fn(err);
+            });
+        }
     },
 
     toggle(){
