@@ -49,6 +49,11 @@ RCT_EXPORT_MODULE();
     [self hide];
 }
 
+- (dispatch_queue_t)methodQueue
+{
+    return dispatch_get_main_queue();
+}
+
 RCT_EXPORT_METHOD(_init:(NSDictionary *)indic){
     if (_pickerView) {
         [self _releasePicker];

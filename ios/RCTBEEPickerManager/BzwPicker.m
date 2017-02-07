@@ -69,7 +69,7 @@
     [cenLabel setTextColor:[UIColor bee_colorWith:centerbtnColor]];
     [view addSubview:cenLabel];
     
-    self.pick = [[UIPickerView alloc] initWithFrame:CGRectMake(-15, 40, self.frame.size.width+15, self.frame.size.height - 50)];
+    self.pick = [[UIPickerView alloc] initWithFrame:CGRectMake(-15, 40, self.frame.size.width+15, self.frame.size.height - 40)];
     self.pick.delegate = self;
     self.pick.dataSource = self;
     self.pick.showsSelectionIndicator=YES;
